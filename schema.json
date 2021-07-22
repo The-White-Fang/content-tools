@@ -1,0 +1,43 @@
+{
+	"user": {
+		"username": "STRING",
+		"firstName": "STRING",
+		"lastName": "STRING",
+		"isSuperUser": "BOOL",
+		"isAdmin": "BOOL",
+		"isWriter": "BOOL",
+		"isClient": "BOOL",
+		"password": "STRING",
+		"created": "Date",
+		"active": "Boolean",
+		"approved": "Boolean",
+		"approvedBy": "String"
+	},
+	"order": {
+		"type": "ILLUSTRATION|ARTICLE",
+		"added": "TIMESTAMP",
+		"confirmed": "TIMESTAMP",
+		"deadline": "TIMESTAMP",
+		"instructions": "STRING",
+		"status": "SUBMITTED|INREVIEW|ASSIGNED",
+		"assigned": "DATE",
+		"assignedTo": "<USER>",
+		"cost": "INT",
+		"submissions": ["<ILLUSTRATION|ARTICLE>"],
+		"reviewed": "DATE",
+		"reviewedBy": "<USER>"
+	},
+	"article": {
+		"title": "STRING",
+		"category": "STRING",
+		"wordCount": "INT",
+		"lang": "STRING",
+		"content": "STRING:HTML",
+		"status": "PENDING|PROCESSING|APPROVED|REJECTED"
+	},
+	"illustration": {
+		"docPath": "STRING",
+		"format": "PSD|AI|PNG|SVG",
+		"status": "PENDING|PROCESSING|APPROVED|REJECTED"
+	}
+}
