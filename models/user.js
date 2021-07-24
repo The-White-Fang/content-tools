@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const argon2 = require('argon2');
 
 const schema = new mongoose.Schema({
 	username: {
@@ -40,6 +41,11 @@ const schema = new mongoose.Schema({
 		required: true,
 		default: false,
 	},
+	isGraphicsDesigner: {
+		type: Boolean,
+		required: true,
+		default: false,
+	},
 	isClient: {
 		type: Boolean,
 		required: true,
@@ -48,6 +54,8 @@ const schema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true,
+		minLength: 8,
+		maxLength: 64,
 	},
 	created: {
 		type: Date,
@@ -57,6 +65,23 @@ const schema = new mongoose.Schema({
 	active: Boolean,
 	approved: Date,
 	approvedBy: mongoose.Schema.Types.ObjectId,
+});
+
+schema.pre('save', async function (next) {
+	if (!this.isModified('password')) {
+		return next();
+	}
+
+	try {
+		const hashedPassword = await argon2.hash(this.password, {
+			type: argon2.argon2i,
+		});
+
+		this.password = hashedPassword;
+		next();
+	} catch (err) {
+		next(err);
+	}
 });
 
 const User = mongoose.model('User', schema);

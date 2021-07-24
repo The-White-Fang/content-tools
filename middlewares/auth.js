@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 
+const {
+	jwt: { secret },
+} = require('../config.json');
+
 const verify = promisify(jwt.verify);
 
 const auth = (exclude = []) => {
@@ -24,7 +28,7 @@ const auth = (exclude = []) => {
 		}
 
 		try {
-			const payload = await verify(authHeader, '0b1010010');
+			const payload = await verify(authHeader, secret);
 			req.user = payload;
 			next();
 		} catch (err) {

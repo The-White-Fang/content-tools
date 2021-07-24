@@ -3,9 +3,9 @@ const Order = require('./order');
 const Article = require('./article');
 const Illustration = require('./illustration');
 
-module.exports({
+module.exports = {
 	User,
 	Order,
 	Article,
 	Illustration,
-});
+};

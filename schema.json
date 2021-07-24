@@ -6,6 +6,7 @@
 		"isSuperUser": "BOOL",
 		"isAdmin": "BOOL",
 		"isWriter": "BOOL",
+		"isGraphicsDesigner": "BOOL",
 		"isClient": "BOOL",
 		"password": "STRING",
 		"created": "Date",
